@@ -2,17 +2,16 @@ from django.db import models
 from django.contrib.postgres.fields import ArrayField
 from django.contrib.postgres.fields import JSONField
 
-class Vocabulary(models.Model):
-    
-    class Word(models.Model):
+
+class Word(models.Model):
         word = models.CharField(max_length=100)
         eng_transl = models.CharField(max_length=100)
         kab_transl = models.CharField(max_length=100)
         ipa = models.CharField(max_length=100)
         audio_url = models.URLField(max_length=100)
-    
+        
+class Vocabulary(models.Model):
     words = models.ManyToManyField(Word, related_name='vocabulary_words')
-
 
 class Poem(models.Model):
     name = models.CharField(max_length=300)
