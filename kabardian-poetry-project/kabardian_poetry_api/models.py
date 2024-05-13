@@ -1,6 +1,4 @@
 from django.db import models
-from django.contrib.postgres.fields import ArrayField
-from django.contrib.postgres.fields import JSONField
 
 
 class Word(models.Model):
@@ -24,7 +22,9 @@ class Poem(models.Model):
     author = models.CharField(max_length=200)
     # audio_url = models.URLField(max_length=300)
     text = models.TextField()
-    vocabulary = models.ForeignKey(Word, on_delete=models.CASCADE)
+    # words = JSONField()
+    words = models.ManyToManyField(Word)
+    # words = models.ForeignKey(Word, on_delete=models.CASCADE)
     
     def __str__(self):
         return self.name
