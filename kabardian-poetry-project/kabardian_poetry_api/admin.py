@@ -1,6 +1,5 @@
 from django.contrib import admin
-from .models import Poem, Vocabulary, Word
+from .models import Poem, Word
 
 admin.site.register(Poem)
-admin.site.register(Vocabulary)
 admin.site.register(Word)
