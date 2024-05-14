@@ -18,7 +18,7 @@ class Word(models.Model):
 #     words = models.ManyToManyField(Word, related_name='vocabulary_words')
 
 class Poem(models.Model):
-    name = models.CharField(max_length=300)
+    title = models.CharField(max_length=300)
     author = models.CharField(max_length=200)
     # audio_url = models.URLField(max_length=300)
     text = models.TextField()
@@ -27,4 +27,4 @@ class Poem(models.Model):
     # words = models.ForeignKey(Word, on_delete=models.CASCADE)
     
     def __str__(self):
-        return self.name
+        return self.title
