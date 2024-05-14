@@ -12,7 +12,7 @@ class PoemSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Poem
-        fields = ['id', 'name', 'author', 'text', 'words']
+        fields = ['id', 'title', 'author', 'text', 'words']
         
     def create(self, validated_data):
         words_data = validated_data.pop('words')
