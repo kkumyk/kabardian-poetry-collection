@@ -2,13 +2,26 @@ from django.http import JsonResponse
 from django.shortcuts import get_object_or_404
 from .models import Word, Poem
 from .serializers import WordSerializer, PoemSerializer
-
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
+from rest_framework import status
 
 # get a GET request to return all existing poems in the db:
+
+@api_view(['GET', 'POST'])
 def poem_list(request):
-    poems = Poem.objects.all()
-    serializer =  PoemSerializer(poems, many=True)
-    return JsonResponse({'poems': serializer.data})
+    if request.method == 'GET':
+        poems = Poem.objects.all()
+        serializer =  PoemSerializer(poems, many=True)
+        return JsonResponse({'poems': serializer.data})
+
+    if request.method == 'POST':
+        serializer = PoemSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+
+
 
 # get a GET request to return a poem by id and include poems' words:
 def poem_detail(request, id):
