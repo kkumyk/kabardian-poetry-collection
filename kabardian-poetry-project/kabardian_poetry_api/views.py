@@ -44,7 +44,15 @@ def poem_detail(request, id):
         # return the combined data as JSON response
         return Response(data)
 
+    # update title, author and test fields of a singular poem
     elif request.method == 'PUT':
-        pass
+        serializer = PoemSerializer(poem, data=request.data)
+        
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)  
+    
     elif request.method == 'DELETE':
-        pass
+        poem.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
