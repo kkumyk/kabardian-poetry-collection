@@ -16,13 +16,10 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-# from kabardian_poetry_api import views
-
-from .views import PoemListCreateAPIView, PoemRetrieveUpdateDestroyAPIView
+from kabardian_poetry_api import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    # path('poems/', views.poem_list)
-    path('poems/', PoemListCreateAPIView.as_view(), name='poem-list-create'),
-    path('poems/<int:pk>/', PoemRetrieveUpdateDestroyAPIView.as_view(), name='poem-detail'),
+    path('poems/', views.poem_list),
+    path('poems/<int:id>/', views.poem_detail),
 ]

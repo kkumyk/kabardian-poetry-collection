@@ -1,30 +1,28 @@
 from django.db import models
 
-
 class Word(models.Model):
         word = models.CharField(max_length=100)
         type = models.CharField(max_length=100, default='noun')
         eng_transl = models.CharField(max_length=100)
         rus_transl = models.CharField(max_length=100)
         ipa = models.CharField(max_length=100)
-        # audio_url = models.URLField(max_length=100)
         
         def __str__(self):
             return self.eng_transl
-                    
-                    
-# class Vocabulary(models.Model):
-#     type = models.CharField(max_length=100, default='nouns')
-#     words = models.ManyToManyField(Word, related_name='vocabulary_words')
+
 
 class Poem(models.Model):
     title = models.CharField(max_length=300)
     author = models.CharField(max_length=200)
-    # audio_url = models.URLField(max_length=300)
     text = models.TextField()
-    # words = JSONField()
     words = models.ManyToManyField(Word)
-    # words = models.ForeignKey(Word, on_delete=models.CASCADE)
     
     def __str__(self):
         return self.title
+    
+
+
+
+# SELECT * FROM kabardian_poetry_api_poem p
+# JOIN kabardian_poetry_api_poem_words pw on pw.poem_id = p.id
+# JOIN kabardian_poetry_api_word w on w.id = pw.word_id;
