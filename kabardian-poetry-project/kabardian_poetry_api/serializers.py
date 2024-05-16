@@ -6,10 +6,7 @@ class WordSerializer(serializers.ModelSerializer):
         model = Word
         fields = ['id', 'word', 'type', 'eng_transl', 'rus_transl', 'ipa']
 
-
 class PoemSerializer(serializers.ModelSerializer):
     class Meta:
         model = Poem
         fields = ['id', 'title', 'author', 'text']
-        
-

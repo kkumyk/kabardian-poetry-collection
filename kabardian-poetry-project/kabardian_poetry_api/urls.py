@@ -22,4 +22,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('poems/', views.poem_list),
     path('poems/<int:id>/', views.poem_detail),
+    path('words/', views.word_list),
+    path('words/<int:id>/', views.word_detail),
 ]
