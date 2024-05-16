@@ -1,7 +1,8 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 class Word(models.Model):
-        word = models.CharField(max_length=100)
+        word = models.CharField(max_length=100, unique=True)
         type = models.CharField(max_length=100)
         eng_transl = models.CharField(max_length=100)
         rus_transl = models.CharField(max_length=100)
@@ -12,7 +13,7 @@ class Word(models.Model):
 
 
 class Poem(models.Model):
-    title = models.CharField(max_length=300)
+    title = models.CharField(max_length=300, unique=True)
     author = models.CharField(max_length=200)
     text = models.TextField()
     words = models.ManyToManyField(Word)
@@ -23,6 +24,6 @@ class Poem(models.Model):
 
 
 
-# SELECT * FROM kabardian_poetry_api_poem p
-# JOIN kabardian_poetry_api_poem_words pw on pw.poem_id = p.id
-# JOIN kabardian_poetry_api_word w on w.id = pw.word_id;
+# SELECT * FROM poems_poem p
+# JOIN poems_poem_words pw on pw.poem_id = p.id
+# JOIN poems_word w on w.id = pw.word_id;
