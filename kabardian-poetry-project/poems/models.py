@@ -21,7 +21,7 @@ class Poem(models.Model):
     def __str__(self):
         return self.title
     
-
+# The __str__() dunder method lets you represent your class object as a string for the benefit of your app's user. 
 
 
 # SELECT * FROM poems_poem p

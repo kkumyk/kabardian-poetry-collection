@@ -1,9 +1,15 @@
-from django.shortcuts import get_object_or_404
+from django.shortcuts import render, get_object_or_404
+from django.views import generic
 from .models import Word, Poem
 from .serializers import WordSerializer, PoemSerializer
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework import status
+
+
+class PoemList(generic.ListView): # generic.ListView class will display all poems
+    queryset = Poem.objects.all()
+    template_name = "poem_list.html"
 
 # get a list of all poems; add a new poem:
 @api_view(['GET', 'POST'])
