@@ -12,6 +12,18 @@ class PoemList(generic.ListView): # generic.ListView class will display all poem
     # template_name = "poem_list.html"
     template_name = "poems/index.html"
     paginate_by = 2
+    
+    
+def poem_detail_ui(request, id):
+    
+    poem = get_object_or_404(Poem, id=id)
+    context = {"poem": poem}
+    
+    return render(
+        request,
+        "poems/poem_detail.html",
+        context
+    )
 
 # get a list of all poems; add a new poem:
 @api_view(['GET', 'POST'])
@@ -110,14 +122,3 @@ def word_detail(request, id):
     elif request.method == 'DELETE':
         word.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
-    
-def poem_detail_ui(request, id):
-    
-    queryset = Poem.objects.all()
-    poem = get_object_or_404(queryset, id=id)
-
-    return render(
-        request,
-        "poems/poem_detail.html",
-        {"poem": poem},
-    )
