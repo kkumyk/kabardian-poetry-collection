@@ -9,7 +9,6 @@ from rest_framework import status
 
 class PoemList(generic.ListView): # generic.ListView class will display all poems
     queryset = Poem.objects.all().order_by("title")
-    # template_name = "poem_list.html"
     template_name = "poems/index.html"
     paginate_by = 2
     

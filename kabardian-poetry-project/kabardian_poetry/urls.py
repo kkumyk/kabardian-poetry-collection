@@ -19,6 +19,7 @@ from django.urls import path, include
 from poems import views
 
 urlpatterns = [
+    path("about/", include("about.urls"), name="about-urls"),
     path('admin/', admin.site.urls),
     path("", include("poems.urls"), name="poems"),
     path('words/', views.word_list),
