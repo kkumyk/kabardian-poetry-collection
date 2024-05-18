@@ -1,5 +1,5 @@
 body {
-    background-color: #F9FAFC;
+    background-color: #2d706c;
 }
 
 .brand {
@@ -7,10 +7,6 @@ body {
     font-size: 1.4rem;
     font-weight: 700;
     color: #4A4A4F;
-}
-
-.red-o {
-    color: #E84610;
 }
 
 .thin {
@@ -43,7 +39,7 @@ body {
     bottom: 5%;
     min-width: 30%;
     left: -2px;
-    background-color: #188181;
+    background-color: #2d706c;
 }
 
 .scale {
@@ -53,8 +49,9 @@ body {
 
 .author {
     color: white;
-    margin: 4px;
+    margin: 14px;
     text-transform: uppercase;
+    color: red;
 }
 
 .masthead {
@@ -98,7 +95,7 @@ body {
 
 .poem-link:hover,
 .page-link {
-    color: #E84610;
+    color: #2d706c;
 }
 
 .poem-title {
@@ -120,11 +117,11 @@ body {
 .btn-signup:hover,
 .btn-signup:active {
     background-color: #fff;
-    color: #23BBBB;
+    color: #2d706c;
 }
 
 .link {
-    color: #23BBBB;
+    color: #2d706c;
     text-decoration: none;
 }
 
@@ -147,7 +144,7 @@ body {
 
 .btn-like:hover,
 .btn-like:active {
-    color: #E84610;
+    color: #2d706c;
     background: transparent;
     border: none;
 }

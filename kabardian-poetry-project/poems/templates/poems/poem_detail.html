@@ -1,21 +1,18 @@
 {% extends 'base.html' %} {% block content %}
 {% load static %}
 
-<div class="masthead">
+<!-- <div class="masthead"> -->
     <div class="container">
         <div class="row g-0">
             <div class="col-md-6 masthead-text">
-                <!-- poem title goes in these h1 tags -->
+
                 <h1 class="poem-title">{{ poem.title }}</h1>
-                <!-- poem author goes before the | the poem's created date goes after -->
                 <p class="poem-subtitle">{{ poem.author }} | {{ poem.created_on }}</p>
             </div>
-            <!-- <div class="d-none d-md-block col-md-6 masthead-image">
-                <img src="{% static 'images/default.jpg' %}" class="scale" alt="placeholder">
-            </div> -->
+            
         </div>
     </div>
-</div>
+<!-- </div> -->
 
 <div class="container">
     <div class="row">
