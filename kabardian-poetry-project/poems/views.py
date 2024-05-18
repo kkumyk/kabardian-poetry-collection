@@ -110,3 +110,14 @@ def word_detail(request, id):
     elif request.method == 'DELETE':
         word.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
+    
+def poem_detail_ui(request, id):
+    
+    queryset = Poem.objects.all()
+    poem = get_object_or_404(queryset, id=id)
+
+    return render(
+        request,
+        "poems/poem_detail.html",
+        {"poem": poem},
+    )

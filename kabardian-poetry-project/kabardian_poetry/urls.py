@@ -20,7 +20,7 @@ from poems import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path("", include("poems.urls"), name="poems-urls"),
+    path("", include("poems.urls"), name="poems"),
     path('words/', views.word_list),
     path('words/<int:id>/', views.word_detail),
 ]

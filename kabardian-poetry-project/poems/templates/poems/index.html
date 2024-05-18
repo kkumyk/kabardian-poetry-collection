@@ -18,7 +18,7 @@
                                     <p class="author">Author: {{ poem.author }}</p>
                                 </div>
                             </div>
-                            <a href="#" class="poem-link">
+                            <a href="{% url 'poem_detail_ui' poem.id %}" class="poem-link">
                                 <h2 class="card-title">{{ poem.title }}</h2>
                                 <!-- <p class="card-text">{{ poem.excerpt }}</p> -->
                             </a>

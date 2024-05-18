@@ -1,0 +1,34 @@
+{% extends 'base.html' %} {% block content %}
+{% load static %}
+
+<div class="masthead">
+    <div class="container">
+        <div class="row g-0">
+            <div class="col-md-6 masthead-text">
+                <!-- poem title goes in these h1 tags -->
+                <h1 class="poem-title">{{ poem.title }}</h1>
+                <!-- poem author goes before the | the poem's created date goes after -->
+                <p class="poem-subtitle">{{ poem.author }} | {{ poem.created_on }}</p>
+            </div>
+            <!-- <div class="d-none d-md-block col-md-6 masthead-image">
+                <img src="{% static 'images/default.jpg' %}" class="scale" alt="placeholder">
+            </div> -->
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col card mb-4  mt-3 left  top">
+            <div class="card-body">
+                <!-- The poem content goes inside the card-text. -->
+                <!-- Use the | safe filter inside the template tags -->
+                <p class="card-text">
+                    {{ poem.text | safe }}
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}
