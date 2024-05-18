@@ -4,10 +4,12 @@ body {
 
 .brand {
     font-family: Lato, sans-serif;
-    font-size: 1.4rem;
+    font-size: 1.7rem;
     font-weight: 700;
-    color: #4A4A4F;
+    color: #fff;
 }
+
+
 
 .thin {
     font-weight: 300;
@@ -22,7 +24,7 @@ body {
 }
 
 .main-bg {
-    background-color: #F9FAFC;
+    background-color: #FFF1E5;
 }
 
 .card {
@@ -36,7 +38,7 @@ body {
 
 .image-flash {
     position: absolute;
-    bottom: 5%;
+    bottom: 15%;
     min-width: 30%;
     left: -2px;
     background-color: #2d706c;
@@ -49,19 +51,18 @@ body {
 
 .author {
     color: white;
-    margin: 14px;
+    margin: 4px;
     text-transform: uppercase;
-    color: red;
 }
 
-.masthead {
-    margin-top: 10px;
+/* .masthead {
+    margin-top: 20px;
     overflow: hidden;
     position: relative;
     display: inline-block;
     height: 33vh;
     width: 100%;
-}
+} */
 
 .masthead-text {
     background-color: #445261;
@@ -69,10 +70,6 @@ body {
     position: relative;
 }
 
-.masthead-image {
-    position: relative;
-    overflow: hidden;
-}
 
 .masthead-image:after {
     content: "";
@@ -99,7 +96,7 @@ body {
 }
 
 .poem-title {
-    margin-top: 10%;
+    margin-top: 5%;
     margin-left: 5%;
 }
 
@@ -155,4 +152,7 @@ body {
 
 .approval {
     color: rgb(222, 146, 168);
+}
+.bg-white {
+    background-color: #2d706c!important;
 }
