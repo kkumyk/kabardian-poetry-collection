@@ -9,7 +9,9 @@ body {
     color: #fff;
 }
 
-
+.nav-link {
+    font-size: 1.7rem!important;
+}
 
 .thin {
     font-weight: 300;
@@ -20,7 +22,7 @@ body {
 }
 
 .dark-bg {
-    background-color: #445261;
+    background-color: #2d706c;
 }
 
 .main-bg {
@@ -54,6 +56,7 @@ body {
     margin: 4px;
     text-transform: uppercase;
 }
+
 
 /* .masthead {
     margin-top: 20px;
