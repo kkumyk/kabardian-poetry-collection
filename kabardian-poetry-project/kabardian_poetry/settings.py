@@ -44,10 +44,23 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
     'rest_framework',
     'poems',
     'about',
 ]
+
+# Add a SITE_ID of 1 so that Django can handle multiple sites from one database.
+# We need to give each project an ID value so that the database is aware of which project is contacting it.
+# We only have one site here using our one database, but we'll still need to tell Django the site number of 1 explicitly.
+# The redirection URLs are also added so that after we've logged in or logged out, the site will automatically redirect us to the home page.
+
+SITE_ID = 1
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -57,6 +70,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    # the is the middleware for the allauth.account app added to INSTALLED_APPS; it adds additional functionality to the account user authentication:
+    'allauth.account.middleware.AccountMiddleware', 
 ]
 
 ROOT_URLCONF = 'kabardian_poetry.urls'
@@ -117,6 +132,8 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
+
+ACCOUNT_EMAIL_VERIFICATION = 'none'
 
 
 # Internationalization

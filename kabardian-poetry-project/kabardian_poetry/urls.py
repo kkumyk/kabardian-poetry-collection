@@ -24,4 +24,5 @@ urlpatterns = [
     path("", include("poems.urls"), name="poems"),
     path('words/', views.word_list),
     path('words/<int:id>/', views.word_detail),
+    path("accounts/", include("allauth.urls")),
 ]
