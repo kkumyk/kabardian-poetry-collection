@@ -59,8 +59,8 @@ INSTALLED_APPS = [
 # The redirection URLs are also added so that after we've logged in or logged out, the site will automatically redirect us to the home page.
 
 SITE_ID = 1
-LOGIN_REDIRECT_URL = '/'
-LOGOUT_REDIRECT_URL = '/'
+LOGIN_REDIRECT_URL = '/poems/'
+LOGOUT_REDIRECT_URL = '/poems/'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
