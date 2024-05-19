@@ -30,7 +30,7 @@ body {
 
 .main-bg {
     background-color: #f7d4bb;
-}
+} 
 
 .card {
     border: none;
@@ -74,7 +74,7 @@ body {
 } */
 
 .masthead-text {
-    background-color: #8e6134;
+    background-color: #606060; /* 808080 */
     color: white;
     position: relative;
 }
