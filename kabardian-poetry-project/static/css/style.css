@@ -4,13 +4,16 @@ body {
 
 .brand {
     font-family: Lato, sans-serif;
-    font-size: 1.7rem;
+    font-size: 1.8rem;
     font-weight: 700;
     color: #fff;
 }
 
 .nav-link {
+    font-family: Lato, sans-serif!important;
+    font-weight: 500!important;
     font-size: 1.7rem!important;
+    color: #fff!important;
 }
 
 .thin {
@@ -26,7 +29,7 @@ body {
 }
 
 .main-bg {
-    background-color: #FFF1E5;
+    background-color: #f7d4bb;
 }
 
 .card {
@@ -52,11 +55,14 @@ body {
 }
 
 .author {
-    color: #445261;
+    color: #704214;
     margin: 4px;
     text-transform: uppercase;
 }
 
+.card-title {
+    color: #704214!important;
+}
 
 /* .masthead {
     margin-top: 20px;
