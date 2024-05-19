@@ -41,7 +41,7 @@ body {
     bottom: 15%;
     min-width: 30%;
     left: -2px;
-    background-color: #2d706c;
+    background-color: #f7d4bb;
 }
 
 .scale {
@@ -50,7 +50,7 @@ body {
 }
 
 .author {
-    color: white;
+    color: #445261;
     margin: 4px;
     text-transform: uppercase;
 }
@@ -87,7 +87,7 @@ body {
 
 .poem-link {
     text-decoration: none;
-    color: #445261;
+    color: white;
 }
 
 .poem-link:hover,
