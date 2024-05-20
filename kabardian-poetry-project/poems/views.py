@@ -37,6 +37,7 @@ def poem_list(request):
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
+        
 
 # get, update and delete a single poem:
 @api_view(['GET', 'PUT', 'DELETE'])
@@ -75,6 +76,7 @@ def poem_detail(request, id):
     elif request.method == 'DELETE':
         poem.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
+    
     
     
 # get a list of all words; add a new word:

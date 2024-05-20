@@ -1,6 +1,7 @@
 {% load static %}
 {% url 'poems' as home_url %}
 {% url 'about' as about_url %}
+{% url 'vocabulary' as vocabulary-list %}
 {% url 'account_login' as login_url %}
 {% url 'account_signup' as signup_url %}
 {% url 'account_logout' as logout_url %}
@@ -54,7 +55,12 @@
                         href="{% url 'about' %}"
                         >About</a>
                     </li>
+
                     {% if user.is_authenticated %}
+                    <li class="nav-item">
+                        <a class="nav-link {% if request.path == vocabulary_url %}active{%endif%}" aria-current="page" href="{% url 'vocabulary-list' %}">Vocabulary</a>
+                    </li>
+
                     <li class="nav-item">
                         <a class="nav-link {% if request.path == logout_url %}active{% endif %}" aria-current="page" href="{% url 'account_logout' %}">Logout</a>
                     </li>

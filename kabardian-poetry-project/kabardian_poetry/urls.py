@@ -16,6 +16,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from vocabulary import views
 from poems import views
 
 urlpatterns = [
@@ -25,4 +26,5 @@ urlpatterns = [
     path('words/', views.word_list),
     path('words/<int:id>/', views.word_detail),
     path("accounts/", include("allauth.urls")),
+    path("", include("vocabulary.urls"), name='vocabulary'),
 ]

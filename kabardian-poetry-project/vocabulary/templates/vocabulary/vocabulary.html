@@ -1,0 +1,29 @@
+{% extends 'base.html' %} {% block content %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Vocabulary</title>
+</head>
+
+<body>
+    <!-- <h1>My Vocabulary</h1> -->
+
+    <p>
+        <ul>
+            {% for word in vocabulary_list %}
+            <li> {{word|lower}}: {{word.word.eng_transl|lower}}, {{word.word.rus_transl|lower}} </li>
+            {% endfor %}
+        </ul>
+    </p>
+    {% endblock content %}
+
+
+</body>
+
+</html>

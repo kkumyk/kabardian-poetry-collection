@@ -51,6 +51,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'poems',
     'about',
+    'vocabulary',
 ]
 
 # Add a SITE_ID of 1 so that Django can handle multiple sites from one database.
