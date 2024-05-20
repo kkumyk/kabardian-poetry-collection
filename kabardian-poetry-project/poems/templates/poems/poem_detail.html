@@ -23,9 +23,20 @@
                 <p class="card-text">
                     {{ poem.text | safe }}
                 </p>
+                <h2>Vocabulary:</h2>
+                <p>
+                    <ul>
+                        {% for word in words %}
+                        <li> {{word.word|lower}}: {{word.eng_transl|lower}}, {{word.rus_transl|lower}} </li>
+                        {% endfor %}
+                    </ul>
+                </p>
+
             </div>
         </div>
     </div>
 </div>
 
 {% endblock content %}
+
+<!-- https://realpython.com/django-template-custom-tags-filters/#:~:text=Building%20Tags%20and%20Filters,-Custom%20tags%20and&text=You%20can%20import%20any%20files,to%20load%20the%20tag%20library.&text=This%20directory%20is%20a%20module,__init__.py%20file. -->

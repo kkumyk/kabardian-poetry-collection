@@ -21,8 +21,7 @@ class Poem(models.Model):
     def __str__(self):
         return self.title
     
-# The __str__() dunder method lets you represent your class object as a string for the benefit of your app's user. 
-
+# The __str__() dunder method lets you represent your class object as a string for the benefit of your app's user.
 
 # SELECT * FROM poems_poem p
 # JOIN poems_poem_words pw on pw.poem_id = p.id

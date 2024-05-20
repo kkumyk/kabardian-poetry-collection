@@ -12,17 +12,17 @@ class PoemList(generic.ListView): # generic.ListView class will display all poem
     template_name = "poems/index.html"
     paginate_by = 2
     
-    
 def poem_detail_ui(request, id):
-    
     poem = get_object_or_404(Poem, id=id)
-    context = {"poem": poem}
+    words = Word.objects.filter(poem=poem)
+    context = {"poem": poem, "words": words}
     
     return render(
         request,
         "poems/poem_detail.html",
         context
     )
+
 
 # get a list of all poems; add a new poem:
 @api_view(['GET', 'POST'])
