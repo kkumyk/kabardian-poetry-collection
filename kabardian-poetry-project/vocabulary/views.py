@@ -5,12 +5,13 @@ from .serializers import VocabularySerializer
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework import status
+from django.contrib.auth.models import User
 
 
 class VocabularyList(generic.ListView): 
     queryset = Vocabulary.objects.all()
     template_name = "vocabulary/vocabulary.html"
-    
+
     
 
 @api_view(['GET', 'POST'])
@@ -18,16 +19,13 @@ class VocabularyList(generic.ListView):
 def vocabulary_list(request):
     
     if request.method == 'GET':
-
         words = Vocabulary.objects.all()
         serializer =  VocabularySerializer(words, many=True)
-
-        return Response({'words': serializer.data})
+        return Response({'vocabulary': serializer.data})
+        
 
     if request.method == 'POST':
         # TODO check if the word is already in the user's vocabulary
-        # word = Word.objects.get_or_create(text=word)
-        # vocabulary_entry = Vocabulary.objects.get_or_create(word=word)
         
         serializer = VocabularySerializer(data=request.data)
         if serializer.is_valid():
