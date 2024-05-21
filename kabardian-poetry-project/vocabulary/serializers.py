@@ -5,4 +5,4 @@ from .models import Vocabulary
 class VocabularySerializer(serializers.ModelSerializer):
     class Meta:
         model = Vocabulary
-        fields = ['id', 'user_id', 'word_id']
+        fields = ['user_id', 'word_id']
