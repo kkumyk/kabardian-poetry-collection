@@ -11,4 +11,29 @@ class Vocabulary(models.Model):
         unique_together = ('user', 'word') # the same word cannot be added multiple times to the same user's vocabulary;
 
     def __str__(self):
-        return f"{self.word.word}" # {self.user.username} - 
+        return f"{self.user.username} - {self.word.word}" 
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
