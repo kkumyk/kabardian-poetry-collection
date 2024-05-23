@@ -12,8 +12,9 @@
 </head>
 
 <body>
+    <h1 class="vocabulary-title"> Vocabulary List</h1>
     <p>
-        <ul>
+        <ul class="word-list">
             {% for word in vocabulary_list %}
             <li> {{word|lower}}: {{word.word.eng_transl|lower}} </li>
             {% endfor %}

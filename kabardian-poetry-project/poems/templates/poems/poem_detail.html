@@ -23,7 +23,7 @@
                     <h2>Vocabulary:</h2>
                     <form id="addWordForm" method="post">
                         <div id="vocabularyList">
-                            <ul>
+                            <ul class="word-list">
                                 {% for word in words %}
                                 <li>
                                     {{word.word|lower}}: {{word.eng_transl|lower}} <button type="submit" id="{{ word.id }}" class="word-button">add</button>

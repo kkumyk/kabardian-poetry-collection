@@ -176,3 +176,13 @@ body {
     font-size: 1rem;
     transition: background-color 0.3s ease;
 }
+
+.vocabulary-title {
+    margin-left: 2%;
+    margin-bottom: 0.5rem;
+    color: #704214;
+}
+
+ul.word-list {
+    list-style-type: none;
+}
