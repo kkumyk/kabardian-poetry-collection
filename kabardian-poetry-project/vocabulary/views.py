@@ -29,10 +29,10 @@ def vocabulary_list(request):
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
-        
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
         
 # delete a word from a vocabulary list:
-
 @api_view(['DELETE'])
 def vocabulary_detail(request, id):
     try:
@@ -42,7 +42,6 @@ def vocabulary_detail(request, id):
         return Response(status=status.HTTP_404_NOT_FOUND)
 
     if request.method == 'DELETE':
-        
         serializer = VocabularySerializer(vocabulary_entry, data=request.data)
         
         if serializer.is_valid():
