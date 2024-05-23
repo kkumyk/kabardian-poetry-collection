@@ -99,7 +99,8 @@
                     document.getElementById(currentWordId).remove();
                 })
                 .catch(error => {
-                    // display error message
+                    // display error message: TODO - display the actual error message
+                    // TODO: the button for the words that are already in the vocabulary should not appear at all on the page
                     document.getElementById('message').innerHTML = '<div class="alert alert-danger" role="alert">This word is in your vocabulary.</div>';
                 });
             });
