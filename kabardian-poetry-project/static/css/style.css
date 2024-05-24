@@ -202,3 +202,7 @@ ul.word-list {
     background-color: #f7d4bb;
     border-color: #f7d4bb;
 }
+
+.word-list ol, .word-list li {
+    margin-bottom: 0.6em;
+}

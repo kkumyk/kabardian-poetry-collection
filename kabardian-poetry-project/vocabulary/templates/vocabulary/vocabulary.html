@@ -20,11 +20,11 @@
             <h1 class="vocabulary-title"> Vocabulary List</h1>
                 <form id="deleteWordForm" method="delete"> 
                     <div id="vocabularyList">
-                        <ul class="word-list">
+                        <ol class="word-list">
                         {% for word in vocabulary_list %}
                         <li> {{word|lower}}: {{word.word.eng_transl|lower}} <button type="submit" id="{{word.id}}" class="delete-button">delete</button></li>
                         {% endfor %}
-                        </ul>
+                        </ol>
                     </div>
                 </form>
             </div>
