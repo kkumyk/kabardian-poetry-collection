@@ -12,10 +12,10 @@ from poems.models import Word
 class VocabularyList(generic.ListView): 
     queryset = Vocabulary.objects.all()
     template_name = "vocabulary/vocabulary.html"
-
+    
     
 # retrieve and add to a vocabulary list:
-@api_view(['GET', 'POST', 'DELETE'])
+@api_view(['GET', 'POST'])
 def vocabulary_list(request):
     
     if request.method == 'GET':
@@ -31,21 +31,19 @@ def vocabulary_list(request):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-        
-# delete a word from a vocabulary list:
-@api_view(['DELETE'])
+
+# get and delete a word from a vocabulary list:
+@api_view(['GET', 'DELETE'])
 def vocabulary_detail(request, id):
     try:
-        vocabulary_entry = Vocabulary.objects.get(word_id=id)
-        
+        word = Vocabulary.objects.get(id=id)
     except Vocabulary.DoesNotExist:
         return Response(status=status.HTTP_404_NOT_FOUND)
 
-    if request.method == 'DELETE':
-        serializer = VocabularySerializer(vocabulary_entry, data=request.data)
-        
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data)
-        vocabulary_entry.delete()
+    if request.method == 'GET':
+        serializer = VocabularySerializer(word)
+        return Response(serializer.data)
+    
+    elif request.method == 'DELETE':
+        word.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
