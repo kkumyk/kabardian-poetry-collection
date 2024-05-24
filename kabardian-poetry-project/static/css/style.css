@@ -196,3 +196,9 @@ body {
 ul.word-list {
     list-style-type: none;
 }
+
+.alert-success-delete {
+    color: #704214;
+    background-color: #f7d4bb;
+    border-color: #f7d4bb;
+}
