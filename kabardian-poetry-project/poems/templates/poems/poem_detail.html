@@ -23,13 +23,13 @@
                     <h2>Vocabulary:</h2>
                     <form id="addWordForm" method="post">
                         <div id="vocabularyList">
-                            <ul class="word-list">
+                            <ol class="word-list">
                                 {% for word in words %}
                                 <li>
                                     {{word.word|lower}}: {{word.eng_transl|lower}} <button type="submit" id="{{ word.id }}" class="word-button">add</button>
                                 </li>
                                 {% endfor %}
-                            </ul>
+                            </ol>
                         </div>
                     </form>
                     <!-- container for displaying messages -->
@@ -40,8 +40,7 @@
     </div>
 
 
-    <script>
-
+<script>
 // set up DOMContentLoaded event listener that waits for the entire HTML document to be fully loaded and parsed before running the enclosed function;
 // the above ensures that all elements in the DOM are available to be manipulated;
         document.addEventListener('DOMContentLoaded', function() {
@@ -74,7 +73,7 @@
                 formData.append('word', currentWordId);
 
                 // get the CSRF token using the getCookie function and stores it in the csrftoken variable;
-                // This token is needed for secure AJAX requests in Django.
+                // this token is needed for secure AJAX requests in Django.
                 let csrftoken = getCookie('csrftoken');
 
                 // makes AJAX POST request to add the word
@@ -96,7 +95,11 @@
                     // display success message
                     document.getElementById('message').innerHTML = '<div class="alert alert-success" role="alert">Word added to vocabulary!</div>';
                     // remove the button for the word that was successfully added
-                    document.getElementById(currentWordId).remove();
+                    
+                    let wordElement = document.getElementById(currentWordId);
+                    if (wordElement) {
+                        wordElement.parentElement.remove(); // remove the parent <li> element
+                    }   
                 })
                 .catch(error => {
                     // display error message: TODO - display the actual error message
@@ -124,8 +127,6 @@
                 return cookieValue;
             }
         });
-
-    </script>
-
+</script>
 
 {% endblock content %}
