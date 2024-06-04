@@ -10,10 +10,12 @@ from rest_framework import status
 class PoemList(generic.ListView): # generic.ListView class will display all poems
     queryset = Poem.objects.all().order_by("title")
     template_name = "poems/index.html"
-    paginate_by = 2
+    paginate_by = 6
     
+
 def poem_detail_ui(request, id):
     poem = get_object_or_404(Poem, id=id)
+    
     words = Word.objects.filter(poem=poem)
     context = {"poem": poem, "words": words}
     
