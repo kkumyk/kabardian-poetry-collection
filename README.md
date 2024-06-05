@@ -17,4 +17,3 @@ kabardian-poetry-project | Python Poetry project  <br>
 
 <hr>
 * the normilised file name ensures that the package can be imported as a Python package
-TEST
