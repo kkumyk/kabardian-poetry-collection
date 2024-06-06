@@ -8,8 +8,11 @@ from rest_framework import status
 from django.contrib.auth.models import User
 from poems.models import Word
 
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.views import generic
 
-class VocabularyList(generic.ListView): 
+
+class VocabularyList(generic.ListView, LoginRequiredMixin, generic.CreateView): 
     queryset = Vocabulary.objects.all()
     template_name = "vocabulary/vocabulary.html"
     
