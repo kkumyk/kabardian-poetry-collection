@@ -26,7 +26,12 @@
                             <ol class="word-list">
                                 {% for word in words %}
                                 <li>
-                                    {{word.word|lower}}: {{word.eng_transl|lower}} <button type="submit" id="{{ word.id }}" class="word-button">add</button>
+                                    {{word.word|lower}}: {{word.eng_transl|lower}}
+                
+                                    {% if user.is_authenticated %}
+                                    <button type="submit" id="{{ word.id }}" class="word-button">add</button>
+                                    {% endif %}
+
                                 </li>
                                 {% endfor %}
                             </ol>
