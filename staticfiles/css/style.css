@@ -1,0 +1,208 @@
+body {
+    background-color: #2d706c;
+}
+
+.brand {
+    font-family: Lato, sans-serif;
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #fff;
+}
+
+.nav-link {
+    font-family: Lato, sans-serif!important;
+    font-weight: 500!important;
+    font-size: 1.7rem!important;
+    color: #fff!important;
+}
+
+.thin {
+    font-weight: 300;
+}
+
+.light-bg {
+    background-color: #fff;
+}
+
+.dark-bg {
+    background-color: #2d706c;
+}
+
+.main-bg {
+    background-color: #FFF1E5;
+} 
+
+.card {
+    border: none;
+    background-color: transparent;
+}
+
+.image-container {
+    position: relative;
+}
+
+.image-flash {
+    position: absolute;
+    bottom: 15%;
+    min-width: 30%;
+    left: -2px;
+    background-color: #f7d4bb;
+}
+
+.scale {
+    width: 100%;
+    height: auto;
+}
+
+.author {
+    color: #704214;
+    margin: 4px;
+    text-transform: uppercase;
+}
+
+.card-title {
+    color: #704214!important;
+}
+
+/* .masthead {
+    margin-top: 20px;
+    overflow: hidden;
+    position: relative;
+    display: inline-block;
+    height: 33vh;
+    width: 100%;
+} */
+
+.masthead-text {
+    background-color: #606060; /* 808080 */
+    color: white;
+    position: relative;
+}
+
+
+.masthead-image:after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 90%;
+    height: 100%;
+    width: 150%;
+    background: #445261;
+    -webkit-transform: skew(15deg);
+    -moz-transform: skew(15deg);
+    transform: skew(15deg);
+    z-index: 100;
+}
+
+.poem-link {
+    text-decoration: none;
+    color: white;
+}
+
+.poem-link:hover,
+.page-link {
+    color: #2d706c;
+}
+
+.poem-title {
+    margin-top: 5%;
+    margin-left: 5%;
+}
+
+.poem-subtitle {
+    margin-left: 5%;
+    color: lightgray;
+}
+
+.btn-signup,
+.btn-edit {
+    background-color: #188181;
+    color: #fff;
+}
+
+.btn-signup:hover,
+.btn-signup:active {
+    background-color: #fff;
+    color: #2d706c;
+}
+
+.link {
+    color: #2d706c;
+    text-decoration: none;
+}
+
+.link:hover,
+.link:active {
+    color: #445261;
+    text-decoration: underline;
+}
+
+.btn-like {
+    color: #E84610;
+    border: none;
+    background: transparent;
+}
+
+.btn-delete {
+    color: #fff;
+    background: #E84610;
+}
+
+.btn-like:hover,
+.btn-like:active {
+    color: #2d706c;
+    background: transparent;
+    border: none;
+}
+
+.faded {
+    color: rgb(172, 175, 175);
+}
+
+.approval {
+    color: rgb(222, 146, 168);
+}
+.bg-white {
+    background-color: #2d706c!important;
+}
+
+.word-button {
+    background-color: #2d706c;
+    color: #fff;
+    padding: 5px 15px;
+    border: none;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+}
+.delete-button {
+    background-color: #704214;
+    color: #fff;
+    padding: 5px 15px;
+    border: none;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+}
+
+.vocabulary-title {
+    margin-left: 2%;
+    margin-bottom: 0.5rem;
+    color: #704214;
+}
+
+ul.word-list {
+    list-style-type: none;
+}
+
+.alert-success-delete {
+    color: #704214;
+    background-color: #f7d4bb;
+    border-color: #f7d4bb;
+}
+
+.word-list ol, .word-list li {
+    margin-bottom: 0.6em;
+}
