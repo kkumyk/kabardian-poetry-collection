@@ -12,7 +12,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views import generic
 
 
-class VocabularyList(generic.ListView, LoginRequiredMixin, generic.CreateView): 
+class VocabularyList(generic.ListView): #, LoginRequiredMixin, generic.CreateView
     queryset = Vocabulary.objects.all()
     template_name = "vocabulary/vocabulary.html"
     

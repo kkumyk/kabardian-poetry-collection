@@ -27,10 +27,10 @@
                                 {% for word in words %}
                                 <li>
                                     {{word.word|lower}}: {{word.eng_transl|lower}}
-                
-                                    {% if user.is_authenticated %}
+<!--                 
+                                    {% if user.is_authenticated %} -->
                                     <button type="submit" id="{{ word.id }}" class="word-button">add</button>
-                                    {% endif %}
+                                    <!-- {% endif %} -->
 
                                 </li>
                                 {% endfor %}
