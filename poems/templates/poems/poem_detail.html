@@ -1,0 +1,137 @@
+{% extends 'base.html' %} {% block content %}
+{% load static %}
+
+    <div class="container">
+        <div class="row g-0">
+            <div class="col-md-6 masthead-text">
+                <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+                <h1 class="poem-title">{{ poem.title }}</h1>
+                <p class="poem-subtitle">{{ poem.author }}</p>
+            </div>  
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col card mb-4 mt-3 left top">
+                <div class="card-body">
+                    <!-- add poem content to the card-text. -->
+                    <p class="card-text">
+                        {{ poem.text | safe }}
+                    </p>
+                    <h2>Vocabulary:</h2>
+                    <form id="addWordForm" method="post">
+                        <div id="vocabularyList">
+                            <ol class="word-list">
+                                {% for word in words %}
+                                <li>
+                                    {{word.word|lower}}: {{word.eng_transl|lower}}
+<!--                 
+                                    {% if user.is_authenticated %} -->
+                                    <button type="submit" id="{{ word.id }}" class="word-button">add</button>
+                                    <!-- {% endif %} -->
+
+                                </li>
+                                {% endfor %}
+                            </ol>
+                        </div>
+                    </form>
+                    <!-- container for displaying messages -->
+                    <div id="message"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+<script>
+// set up DOMContentLoaded event listener that waits for the entire HTML document to be fully loaded and parsed before running the enclosed function;
+// the above ensures that all elements in the DOM are available to be manipulated;
+        document.addEventListener('DOMContentLoaded', function() {
+            let currentWordId = null; // placeholder to store the ID of the currently selected word to add to the vocabulary;
+
+            // function to handle button click:
+            // iterate over all elements with the class word-button and add an event listener for the click event;
+            // the the button is clicked, the enclosed function will be executed
+            document.querySelectorAll('.word-button').forEach(button => {
+                button.addEventListener('click', function(event) {
+                    event.preventDefault(); // prevents the default action associated with the button click, here - submitting a form;
+                    currentWordId = this.id; // sets the currentWordId to the id of the button that was clicked;
+                    // dispatches a submit event on the form with the ID addWordForm, causing it to behave as if it was submitted;
+                    document.getElementById('addWordForm').dispatchEvent(new Event('submit'));
+                });
+            });
+
+            // function to handle form submission
+            document.getElementById('addWordForm').addEventListener('submit', function(event) {
+                event.preventDefault(); // prevents the default form submission action, so the form data can be handled via AJAX instead;
+
+                // serialize form data
+                let formData = new FormData(this); // creates a FormData object from the form for easy access to the form's data;
+
+                // get the current user's information
+                let currentUser = "{{ request.user.id }}";
+
+                // append additional data - user and word IDs - to the FormData object
+                formData.append('user', currentUser);
+                formData.append('word', currentWordId);
+
+                // get the CSRF token using the getCookie function and stores it in the csrftoken variable;
+                // this token is needed for secure AJAX requests in Django.
+                let csrftoken = getCookie('csrftoken');
+
+                // makes AJAX POST request to add the word
+                fetch("{% url 'vocabulary-detail-list' %}", {
+                    method: "POST",
+                    headers: {
+                        "X-CSRFToken": csrftoken,
+                        "Accept": "application/json"
+                    },
+                    body: formData
+                })
+                .then(response => {
+                    if (response.ok) {
+                        return response.json();
+                    }
+                    throw new Error('Network response was not ok.');
+                })
+                .then(data => {
+                    // display success message
+                    document.getElementById('message').innerHTML = '<div class="alert alert-success" role="alert">Word added to vocabulary!</div>';
+                    // remove the button for the word that was successfully added
+                    
+                    let wordElement = document.getElementById(currentWordId);
+                    if (wordElement) {
+                        wordElement.parentElement.remove(); // remove the parent <li> element
+                    }   
+                })
+                .catch(error => {
+                    // display error message: TODO - display the actual error message
+                    // TODO: the button for the words that are already in the vocabulary should not appear at all on the page
+                    document.getElementById('message').innerHTML = '<div class="alert alert-danger" role="alert">This word is in your vocabulary.</div>';
+                });
+            });
+
+            // function to get the CSRF token from the cookie:
+            // define a getCookie function that retrieves the value of a specified cookie by name;
+            // Iit splits the document's cookies string and searches for the cookie with the specified name, then returns its value;
+            function getCookie(name) {
+                let cookieValue = null;
+                if (document.cookie && document.cookie !== '') {
+                    let cookies = document.cookie.split(';');
+                    for (let i = 0; i < cookies.length; i++) {
+                        let cookie = cookies[i].trim();
+                        // does this cookie string begin with the name we want?
+                        if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                            cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                            break;
+                        }
+                    }
+                }
+                return cookieValue;
+            }
+        });
+</script>
+
+{% endblock content %}
