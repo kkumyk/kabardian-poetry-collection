@@ -14,6 +14,7 @@ import os
 from pathlib import Path
 import dj_database_url
 
+
 if os.path.isfile('env.py'):
     import env
 
@@ -32,7 +33,7 @@ SECRET_KEY = 'django-insecure-het*5!3n^51=f)sljz!_-v5i=b!wz8r#j!7xx--!*fpv2uhi5f
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['.herokuapp.com']
+ALLOWED_HOSTS = ['127.0.0.1', '.herokuapp.com']
 
 
 # Application definition
@@ -49,6 +50,7 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
     'rest_framework',
+    # 'django-heroku',
     'poems',
     'about',
     'vocabulary',
