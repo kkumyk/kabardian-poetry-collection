@@ -6,10 +6,10 @@
 
 ├── kabardian_poetry | Django project <br>
 ├── poems | Django app <br>
-│ <br>
+├── about | Django app <br>
+├── vocabulary | Django app <br>
 ├── tests <br>
 │   ├── __init__.py <br>
-│<br>
 └── requirements.txt |  <br>
 
 <hr>
