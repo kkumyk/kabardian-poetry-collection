@@ -22,7 +22,7 @@ from poems import views
 urlpatterns = [
     path("about/", include("about.urls"), name="about-urls"),
     path('admin/', admin.site.urls),
-    path("poems/", include("poems.urls"), name="poems"),
+    path("", include("poems.urls"), name="poems"),
     path('words/', views.word_list),
     path('words/<int:id>/', views.word_detail),
     path("accounts/", include("allauth.urls")),
