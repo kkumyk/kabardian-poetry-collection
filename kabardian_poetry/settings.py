@@ -50,7 +50,6 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
     'rest_framework',
-    # 'django-heroku',
     'poems',
     'about',
     'vocabulary',
