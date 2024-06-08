@@ -66,11 +66,9 @@ document.addEventListener('DOMContentLoaded', function() {
         })
         .then(data => {
             if (data.vocabulary && data.vocabulary.length > 0) {
-                let vocabularyId = data.vocabulary[0].id;
-
                 // send the DELETE request using the vocabulary entry ID
                 let csrftoken = getCookie('csrftoken');
-                return fetch(`/vocabulary-api/${vocabularyId}/`, {
+                return fetch(`/vocabulary-api/${currentWordId}/`, {
                     method: "DELETE",
                     headers: {
                         "X-CSRFToken": csrftoken,
@@ -85,6 +83,7 @@ document.addEventListener('DOMContentLoaded', function() {
             if (response.ok) {
                 document.getElementById('message').innerHTML = '<div class="alert alert-success-delete" role="alert">Word deleted from your vocabulary!</div>';
                 // remove the word and the button from the UI
+                
                 let wordElement = document.getElementById(currentWordId);
                 if (wordElement) {
                     wordElement.parentElement.remove(); // remove the parent <li> element
@@ -113,9 +112,8 @@ document.addEventListener('DOMContentLoaded', function() {
         return cookieValue;
     }
 });
-
-
 </script>
+
 {% endblock content %}
 </body>
 
