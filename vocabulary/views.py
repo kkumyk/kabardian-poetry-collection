@@ -11,12 +11,21 @@ from poems.models import Word
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views import generic
 
+    
+# LoginRequiredMixin ensures that only authenticated users can access the view.
+# If the user is not logged in, they will be redirected to the login page.
 
-class VocabularyList(generic.ListView): #, LoginRequiredMixin, generic.CreateView
-    queryset = Vocabulary.objects.all()
+class VocabularyList(LoginRequiredMixin, generic.ListView):
     template_name = "vocabulary/vocabulary.html"
     
+    # use a variable vocabulary_list which holds a list of Vocabulary objects to pass these to the template
+    context_object_name = "vocabulary_list"
     
+    def get_queryset(self):
+        # filter the Vocabulary objects by the logged-in user
+        return Vocabulary.objects.filter(user=self.request.user)
+
+
 # retrieve and add to a vocabulary list:
 @api_view(['GET', 'POST'])
 def vocabulary_list(request):
