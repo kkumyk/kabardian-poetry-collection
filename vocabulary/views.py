@@ -9,7 +9,8 @@ from django.contrib.auth.models import User
 from poems.models import Word
 
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.views import generic
+
+from django.contrib.auth.decorators import login_required
 
     
 # LoginRequiredMixin ensures that only authenticated users can access the view.
@@ -26,7 +27,8 @@ class VocabularyList(LoginRequiredMixin, generic.ListView):
         return Vocabulary.objects.filter(user=self.request.user)
 
 
-# retrieve and add to a vocabulary list:
+# retrieve and add to a vocabulary list
+@login_required
 @api_view(['GET', 'POST'])
 def vocabulary_list(request):
     
@@ -44,7 +46,8 @@ def vocabulary_list(request):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
-# get and delete a word from a vocabulary list:
+# get and delete a word from a vocabulary list
+@login_required
 @api_view(['GET', 'DELETE'])
 def vocabulary_detail(request, id):
     try:
