@@ -5,11 +5,8 @@ from .serializers import VocabularySerializer
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework import status
-from django.contrib.auth.models import User
-from poems.models import Word
-
+# from django.contrib.auth.models import User
 from django.contrib.auth.mixins import LoginRequiredMixin
-
 from django.contrib.auth.decorators import login_required
 
     
@@ -34,11 +31,10 @@ def vocabulary_list(request):
     
     if request.method == 'GET':
         words = Vocabulary.objects.all()
-        serializer =  VocabularySerializer(words, many=True)
+        serializer = VocabularySerializer(words, many=True)
         return Response({'vocabulary': serializer.data})
         
     if request.method == 'POST':
-        # TODO check if the word is already in the user's vocabulary
         serializer = VocabularySerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
