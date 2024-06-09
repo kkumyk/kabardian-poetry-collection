@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.sites',
+    'django.contrib.redirects',
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
@@ -73,6 +74,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     # the is the middleware for the allauth.account app added to INSTALLED_APPS; it adds additional functionality to the account user authentication:
     'allauth.account.middleware.AccountMiddleware', 
+    'django.contrib.redirects.middleware.RedirectFallbackMiddleware'
 ]
 
 ROOT_URLCONF = 'kabardian_poetry.urls'
