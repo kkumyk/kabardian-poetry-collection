@@ -5,6 +5,7 @@ from .serializers import WordSerializer, PoemSerializer
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework import status
+from django.contrib.auth.decorators import login_required
 
 
 class PoemList(generic.ListView): # generic.ListView class will display all poems
@@ -25,8 +26,8 @@ def poem_detail_ui(request, id):
         context
     )
 
-
-# get a list of all poems; add a new poem:
+# get a list of all poems; add a new poem
+@login_required
 @api_view(['GET', 'POST'])
 def poem_list(request):
     if request.method == 'GET':
@@ -41,7 +42,8 @@ def poem_list(request):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         
 
-# get, update and delete a single poem:
+# get, update and delete a single poem
+@login_required
 @api_view(['GET', 'PUT', 'DELETE'])
 def poem_detail(request, id):
     
@@ -82,7 +84,7 @@ def poem_detail(request, id):
     
     
 # get a list of all words; add a new word:
-
+@login_required
 @api_view(['GET', 'POST'])
 def word_list(request):
     if request.method == 'GET':
@@ -99,6 +101,7 @@ def word_list(request):
 
 
 # get, update and delete a single word:
+@login_required
 @api_view(['GET', 'PUT', 'DELETE'])
 def word_detail(request, id):
     
