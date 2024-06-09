@@ -1,6 +1,6 @@
 # Kabardian Poetry Collection
 
-[DEPLOYED SITE](https://kabardian-poems-collection-b906b8b63b33.herokuapp.com/poems/)
+[DEPLOYED SITE](https://kabardian-poems-collection-b906b8b63b33.herokuapp.com/)
 
 ## Project Structure
 
@@ -13,4 +13,3 @@
 └── requirements.txt |  <br>
 
 <hr>
-* the normilised file name ensures that the package can be imported as a Python package
