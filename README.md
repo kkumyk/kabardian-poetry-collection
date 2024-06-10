@@ -3,6 +3,8 @@
 [DEPLOYED SITE](https://kabardian-poems-collection-b906b8b63b33.herokuapp.com/)
 
 ## Tech Stack
+<table>
+<tbody>
   <tr>
     <td><img src="https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54" alt="python" width="110" height="28"></td>
     <td><img src="https://img.shields.io/badge/django-%23092E20.svg?style=for-the-badge&logo=django&logoColor=white" alt="django" width="110" height="30"></td>
@@ -10,7 +12,9 @@
     <td><img src="https://img.shields.io/badge/PostgreSQL-34517d.svg?style=for-the-badge&logo=PostgreSQL&logoColor=white" alt="postgres" width="110" height="28"></td>
     <td><img src="https://img.shields.io/badge/Git-fc6d26?style=for-the-badge&logo=git&logoColor=white" alt="git" width="70" height="28"></td>
     <td><img src="https://img.shields.io/badge/heroku-4173c9.svg?style=for-the-badge&logo=Heroku&logoColor=white" alt="heroku" width="90" height="28"></td>
-</tr>
+  </tr>
+</tbody>
+</table>
 
 <!-- ## Project Overview  -->
 
