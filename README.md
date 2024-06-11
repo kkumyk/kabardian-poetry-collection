@@ -48,36 +48,7 @@ Find out project board here: [project board](https://github.com/users/kkumyk/pro
 - can delete words from their vocabulary page
 
 ## Database Design
-
-### Poem Model
-|Key|Name|Type|
-|---|---|---|
-|PK |id   |int|
-|   |title|CharField(300)   |
-|   |author   |CharField(200)   |
-|   |text   |TextField   |
-
-### Word Model
-|Key|Name|Type|
-|---|---|---|
-|PK |id   |int|
-|   |word|CharField(100)   |
-|   |type|CharField(100)   |
-|   |eng_transl|CharField(100)   |
-|   |rus_transl|CharField(100)   |
-|   |ipa|CharField(100)   |
+### Kabardian Poems Collection ERD
 
 
-### Poems Words Join Table
-|Key|Name|Type|
-|---|---|---|
-|PK |id   |int|
-|Foreign Key   |poem_id|int   |
-|Foreign Key   |word_id|int   |
-
-### Vocabulary Model
-|Key|Name|Type|
-|---|---|---|
-|PK |id   |int|
-|Foreign Key|user_id|int   |
-|Foreign Key|word_id|int   |
+<img src="/kkumyk/kabardian-poetry-collection/raw/master/documentation/poems-erd.png" style="width: 698px; max-width: 100%;">
