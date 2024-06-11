@@ -51,4 +51,4 @@ Find out project board here: [project board](https://github.com/users/kkumyk/pro
 ### Kabardian Poems Collection ERD
 
 
-<img src="/kkumyk/kabardian-poetry-collection/raw/master/documentation/poems-erd.png" style="width: 698px; max-width: 100%;">
+<img src="./documentation/poems-erd.png" style="width: 698px; max-width: 100%;">
