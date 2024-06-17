@@ -2,7 +2,6 @@ from django.db import models
 
 class Word(models.Model):
         word = models.CharField(max_length=100, unique=True)
-        type = models.CharField(max_length=100)
         eng_transl = models.CharField(max_length=100)
         rus_transl = models.CharField(max_length=100)
         ipa = models.CharField(max_length=100)
