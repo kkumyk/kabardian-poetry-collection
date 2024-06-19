@@ -6,6 +6,7 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework import status
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import user_passes_test
 
 
 class PoemList(generic.ListView): # generic.ListView class will display all poems
@@ -99,32 +100,32 @@ def word_list(request):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
 
 
-
-# get, update and delete a single word:
+# get, update and delete a single word; restricted to superusers only:
 @login_required
 @api_view(['GET', 'PUT', 'DELETE'])
 def word_detail(request, id):
     
-    # check for a valid request
-    try:
-        word = Word.objects.get(pk=id)
-    except Word.DoesNotExist:
-        return Response(status=status.HTTP_404_NOT_FOUND) # get the word instance or return a 404 response if not found
-    
-    if request.method == 'GET':
-        word_serializer = WordSerializer(word) # serialize the word instance
-        data = word_serializer.data
-        return Response(data)
-
-    # update fields of a word
-    elif request.method == 'PUT':
-        serializer = WordSerializer(word, data=request.data)
+    if request.user.is_superuser:
+        # check for a valid request
+        try: 
+            word = Word.objects.get(pk=id)
+        except Word.DoesNotExist:
+            return Response(status=status.HTTP_404_NOT_FOUND) # get the word instance or return a 404 response if not found
         
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)  
-    
-    elif request.method == 'DELETE':
-        word.delete()
-        return Response(status=status.HTTP_204_NO_CONTENT)
+        if request.method == 'GET':
+            word_serializer = WordSerializer(word) # serialize the word instance
+            data = word_serializer.data
+            return Response(data)
+
+        # update fields of a word
+        elif request.method == 'PUT':
+            serializer = WordSerializer(word, data=request.data)
+            
+            if serializer.is_valid():
+                serializer.save()
+                return Response(serializer.data)
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)  
+        
+        elif request.method == 'DELETE':
+            word.delete()
+            return Response(status=status.HTTP_204_NO_CONTENT)

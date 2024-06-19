@@ -52,3 +52,9 @@ Find out project board here: [project board](https://github.com/users/kkumyk/pro
 
 
 <img src="./documentation/poems-erd.png" style="width: 698px; max-width: 100%;">
+
+## REST API Endpoints
+
+Available to the superusers only:
+
+  '/words/word-id/'
