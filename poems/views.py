@@ -6,7 +6,6 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework import status
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.decorators import user_passes_test
 
 
 class PoemList(generic.ListView): # generic.ListView class will display all poems
