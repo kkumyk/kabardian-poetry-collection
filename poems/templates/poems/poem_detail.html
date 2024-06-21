@@ -27,10 +27,10 @@
                                 {% for word in words %}
                                 <li>
                                     {{word.word|lower}}: {{word.eng_transl|lower}}
-<!--                 
-                                    {% if user.is_authenticated %} -->
+                
+                                    {% if user.is_authenticated %}
                                     <button type="submit" id="{{ word.id }}" class="word-button">add</button>
-                                    <!-- {% endif %} -->
+                                    {% endif %}
 
                                 </li>
                                 {% endfor %}
@@ -59,7 +59,7 @@
                     event.preventDefault(); // prevents the default action associated with the button click, here - submitting a form;
                     currentWordId = this.id; // sets the currentWordId to the id of the button that was clicked;
                     // dispatches a submit event on the form with the ID addWordForm, causing it to behave as if it was submitted;
-                    document.getElementById('addWordForm').dispatchEvent(new Event('submit'));
+                    document.getElementById('addWordForm').requestSubmit();
                 });
             });
 

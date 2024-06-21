@@ -119,11 +119,8 @@ DATABASES = {
 
 #  This is a list of the trusted origins for requests. As shown, you need to add both your local development server URL domain and 
 #  your production server URL domain to allow you to add blog post content from the admin dashboard. The subdomain is wildcarded with a *.
-# A list of trusted origins for unsafe requests (e.g. POST)
-# 
-
 CSRF_TRUSTED_ORIGINS = [
-    "https://kabardian-poems-collection-b906b8b63b33.herokuapp.com"
+    "https://*.herokuapp.com"
 ]
 
 # Password validation
