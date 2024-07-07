@@ -9,4 +9,4 @@ class WordSerializer(serializers.ModelSerializer):
 class PoemSerializer(serializers.ModelSerializer):
     class Meta:
         model = Poem
-        fields = ['id', 'title', 'author', 'text']
+        fields = ['id', 'title', 'author', 'contents']

@@ -25,6 +25,7 @@ def poem_detail_ui(request, id):
         "poems/poem_detail.html",
         context
     )
+# https://www.django-rest-framework.org/api-guide/authentication/#tokenauthentication
 
 # get a list of all poems; add a new poem
 @login_required

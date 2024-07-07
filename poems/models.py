@@ -13,7 +13,7 @@ class Word(models.Model):
 class Poem(models.Model):
     title = models.CharField(max_length=300, unique=True)
     author = models.CharField(max_length=200)
-    text = models.TextField()
+    contents = models.TextField()
     words = models.ManyToManyField(Word)
     
     def __str__(self):
