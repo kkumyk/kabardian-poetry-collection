@@ -11,7 +11,7 @@ from django.contrib.auth.decorators import login_required
 class PoemList(generic.ListView): # generic.ListView class will display all poems
     queryset = Poem.objects.all().order_by("title")
     template_name = "poems/index.html"
-    paginate_by = 6
+    paginate_by = 21
     
 
 def poem_detail_ui(request, id):
