@@ -1,9 +1,9 @@
 from django.db import models
 
 class Word(models.Model):
-        word = models.CharField(max_length=100, unique=True)
-        eng_transl = models.CharField(max_length=100)
-        rus_transl = models.CharField(max_length=100)
+        word = models.CharField(max_length=200, unique=True)
+        eng_transl = models.CharField(max_length=1000)
+        rus_transl = models.CharField(max_length=1000)
         ipa = models.CharField(max_length=100)
         
         def __str__(self):
