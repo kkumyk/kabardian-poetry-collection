@@ -4,7 +4,7 @@ from .models import Poem, Word
 class WordSerializer(serializers.ModelSerializer):
     class Meta:
         model = Word
-        fields = ['id', 'word', 'eng_transl', 'rus_transl', 'ipa']
+        fields = ['id', 'word', 'eng_transl', 'rus_transl']# , 'ipa'
 
 class PoemSerializer(serializers.ModelSerializer):
     class Meta:
