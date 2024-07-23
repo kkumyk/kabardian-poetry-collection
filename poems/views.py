@@ -7,13 +7,13 @@ from rest_framework.response import Response
 from rest_framework import status
 from django.contrib.auth.decorators import login_required
 
-
-class PoemList(generic.ListView): # generic.ListView class will display all poems
+# the generic.ListView class will display all poems
+class PoemList(generic.ListView):
     queryset = Poem.objects.all().order_by("title")
     template_name = "poems/index.html"
     paginate_by = 21
     
-
+# the view for a single poem displayed on UI
 def poem_detail_ui(request, id):
     poem = get_object_or_404(Poem, id=id)
     
@@ -25,12 +25,15 @@ def poem_detail_ui(request, id):
         "poems/poem_detail.html",
         context
     )
-# https://www.django-rest-framework.org/api-guide/authentication/#tokenauthentication
+    
+'''
+- this view allows any logged in user to use API to post a new poem to the collection
+- the user can get a list of all poems and to post a new poem
+'''
 
-# get a list of all poems; add a new poem
 @login_required
 @api_view(['GET', 'POST'])
-def poem_list(request):
+def poems_list_api(request):
     if request.method == 'GET':
         poems = Poem.objects.all()
         serializer =  PoemSerializer(poems, many=True)
@@ -42,6 +45,7 @@ def poem_list(request):
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         
+
 
 # get, update and delete a single poem
 @login_required
