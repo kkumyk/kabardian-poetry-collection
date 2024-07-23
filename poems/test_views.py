@@ -1,7 +1,10 @@
 from django.test import TestCase, Client
 from django.urls import reverse
 from .models import Poem, Word
-from django.shortcuts import get_list_or_404
+from rest_framework import status
+from rest_framework.test import APITestCase, APIClient
+from django.contrib.auth.models import User
+
 '''
 testing generic list view PoemList:
     - check if the view retrieves all poems by title
@@ -52,7 +55,7 @@ class PoemListViewTests(TestCase):
 class PoemDetailUiViewTests(TestCase):
     def setUp(self):
         self.client = Client()
-        self.poem = Poem.objects.create(title="Sample Poem", contents= "Amazing Verses")
+        self.poem = Poem.objects.create(contents = "Amazing Verses")
         
         # create words associated with the poem
         for i in range(3):
@@ -74,3 +77,14 @@ class PoemDetailUiViewTests(TestCase):
     def test_poem_detail_ui_view_404(self):
         response = self.client.get(reverse("poem_detail_ui", args=[999])) # assuming that there is no poem with the id of 999
         self.assertEqual(response.status_code, 404)
+        
+        
+class PoemsListApiTests(APITestCase):
+    # prepare data and state required for tests: use setUp method to create a user, a test poem and define the url from the poems_list_api view
+    def setUp(self):
+        self.client = APIClient()
+        self.user = User.objects.create_user(username='testuser', password='secret')
+        self.poem_data = {'author': 'Test Author', 'title': 'Test Poem', 'contents': 'This is a test poem.'}
+        self.poem = Poem.objects.create(**self.poem_data)
+        self.url = reverse('poems_list_api')
+        
