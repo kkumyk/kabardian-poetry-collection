@@ -2,7 +2,7 @@
 
 from django.urls import path
 # from . import views
-from .views import PoemList, poem_detail_ui, poems_list_api, poem_detail
+from .views import PoemList, poem_detail_ui, poems_list_api_view, poem_detail
 
 
 urlpatterns = [
@@ -14,7 +14,7 @@ urlpatterns = [
     
     # API URL paths:
     # path('poems-api/', poem_list, name='poems'),
-    path('poems-api/', poems_list_api, name='poems_list_api'),
+    path('poems-api/', poems_list_api_view, name='poems_list_api_view'),
     
     path('poems-api/<int:id>/', poem_detail),
     
