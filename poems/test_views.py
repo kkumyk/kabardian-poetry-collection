@@ -79,12 +79,44 @@ class PoemDetailUiViewTests(TestCase):
         self.assertEqual(response.status_code, 404)
         
         
-class PoemsListApiTests(APITestCase):
-    # prepare data and state required for tests: use setUp method to create a user, a test poem and define the url from the poems_list_api view
+class PoemsListApiViewTests(APITestCase):
+    '''
+    prepare data and state required for tests:
+    use setUp method to create a user, a test poem and define the url from the poems_list_api_view
+
+    Pome.objects.create(...) method is provided by Django's ORM (Object Relational Mapping) to create a new instance of the Poem model and to save it directly to the database.
+    '''
     def setUp(self):
         self.client = APIClient()
         self.user = User.objects.create_user(username='testuser', password='secret')
         self.poem_data = {'author': 'Test Author', 'title': 'Test Poem', 'contents': 'This is a test poem.'}
         self.poem = Poem.objects.create(**self.poem_data)
-        self.url = reverse('poems_list_api')
+        self.url = reverse('poems_list_api_view')
         
+    def test_login_required_for_get(self):
+        # verify that unauthenticated GET requests are forbidden: 
+        response = self.client.get(self.url)
+        # users that are not authenticated will be 302 redirected to the log in page
+        self.assertEqual(response.status_code, status.HTTP_302_FOUND)
+
+    def test_login_required_for_post(self):
+        # verify that unauthenticated POST requests are forbidden: 
+        response = self.client.post(self.url, self.poem_data, format='json')
+        # users that are not authenticated will be 302 redirected to the log in page
+        self.assertEqual(response.status_code, status.HTTP_302_FOUND)
+        
+    def test_get_poems_list_authenticated(self):
+        '''
+        - authenticate the test client with valid credentials
+        - send a GET request to the UEL associated with the poems list view 
+        - check that the HTTP status code of the response is 200
+        - ensure that the response data contains a "key" poems
+        - verify that the length of the poems list in the response data is equals 1
+        - confirm that the title of the first poem in the response data is the same as the expected title
+        '''
+        self.client.login(username='testuser', password='secret')
+        response = self.client.get(self.url)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertIn('poems', response.data)
+        self.assertEqual(len(response.data['poems']), 1)
+        self.assertEqual(response.data['poems'][0]['title'], self.poem_data['title'])
