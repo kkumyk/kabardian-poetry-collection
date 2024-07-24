@@ -27,13 +27,13 @@ def poem_detail_ui(request, id):
     )
     
 '''
-- this view allows any logged in user to use API to post a new poem to the collection
-- the user can get a list of all poems and to post a new poem
+- this view allows a logged-in user to use API to post a new poem to the collection
+- the user can get a list of all poems and post a new poem
 '''
 
 @login_required
 @api_view(['GET', 'POST'])
-def poems_list_api(request):
+def poems_list_api_view(request):
     if request.method == 'GET':
         poems = Poem.objects.all()
         serializer =  PoemSerializer(poems, many=True)
