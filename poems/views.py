@@ -6,6 +6,11 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework import status
 from django.contrib.auth.decorators import login_required
+from rest_framework import permissions
+import logging
+
+# Set up logging
+logger = logging.getLogger(__name__)
 
 # the generic.ListView class will display all poems
 class PoemList(generic.ListView):
@@ -26,14 +31,13 @@ def poem_detail_ui(request, id):
         context
     )
     
-'''
-- this view allows a logged-in user to use API to post a new poem to the collection
-- the user can get a list of all poems and post a new poem
-'''
-
 @login_required
 @api_view(['GET', 'POST'])
 def poems_list_api_view(request):
+    '''
+    This view allows a logged-in user to use this APi endpoint for posting a new poem to the collection.
+    The user can get a list of all poems and post a new poem.
+    '''
     if request.method == 'GET':
         poems = Poem.objects.all()
         serializer =  PoemSerializer(poems, many=True)
@@ -44,49 +48,47 @@ def poems_list_api_view(request):
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
-        
 
 
-# get, update and delete a single poem
+# get/update/delete a single poem
 @login_required
 @api_view(['GET', 'PUT', 'DELETE'])
-def poem_detail(request, id):
-    
-    # check if it is a valid request
-    try:
-        poem = Poem.objects.get(pk=id)
-    except Poem.DoesNotExist:
-        return Response(status=status.HTTP_404_NOT_FOUND) # get the poem instance or return a 404 response if not found
-    
-    if request.method == 'GET':
-        poem_serializer = PoemSerializer(poem) # serialize the poem instance
+def poem_detail_api_view(request, id):
+    '''
+    This view allows a logged-in user to view a single poem, amend and delete it only if the user is the one who added the poem.
+    '''
+    if request.user.is_superuser:
+        # check if it is a valid request
+        try:
+            poem = Poem.objects.get(pk=id)
+        except Poem.DoesNotExist:
+            logger.debug(f"Poem with id {id} does not exist.")
+            return Response(status=status.HTTP_404_NOT_FOUND) # get the poem instance or return a 404 response if not found
         
-        words = Word.objects.filter(poem=poem) # get poem's words
-        word_serializer = WordSerializer(words, many=True) # serialize poem's words
-        
-        # combine poem data and words data into a single dictionary
-        data = {
-            'poem': poem_serializer.data,
-            'words': word_serializer.data
-        }
-        
-        # return the combined data as JSON response
-        return Response(data)
+        if request.method == 'GET':
+            poem_serializer = PoemSerializer(poem) # serialize the poem instance
+            words = Word.objects.filter(poem=poem) # get poem's words
+            word_serializer = WordSerializer(words, many=True) # serialize poem's words
+            
+            # combine poem data and words data into a single dictionary
+            data = {
+                'poem': poem_serializer.data,
+                'words': word_serializer.data
+            }
+            return Response(data) # return the combined data as JSON response
 
-    # update title, author and test fields of a singular poem
-    elif request.method == 'PUT':
-        serializer = PoemSerializer(poem, data=request.data)
+        # update title, author and test fields of a singular poem
+        elif request.method == 'PUT':
+            serializer = PoemSerializer(poem, data=request.data)
+            if serializer.is_valid():
+                serializer.save()
+                return Response(serializer.data)
+            logger.debug(f"PUT request data is invalid: {serializer.errors}")
+            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)  
         
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)  
-    
-    elif request.method == 'DELETE':
-        poem.delete()
-        return Response(status=status.HTTP_204_NO_CONTENT)
-    
-    
+        elif request.method == 'DELETE':
+            poem.delete()
+            return Response(status=status.HTTP_204_NO_CONTENT)
     
 # get a list of all words; add a new word:
 @login_required
