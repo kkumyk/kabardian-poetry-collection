@@ -35,8 +35,8 @@ def poem_detail_ui(request, id):
 @api_view(['GET', 'POST'])
 def poems_list_api_view(request):
     '''
-    This view allows a logged-in user to use this APi endpoint for posting a new poem to the collection.
-    The user can get a list of all poems and post a new poem.
+    This view allows a logged-in user to see poems collection.
+    The superuser can also add a new poem.
     '''
     if request.method == 'GET':
         poems = Poem.objects.all()
@@ -55,7 +55,7 @@ def poems_list_api_view(request):
 @api_view(['GET', 'PUT', 'DELETE'])
 def poem_detail_api_view(request, id):
     '''
-    This view allows a logged-in user to view a single poem, amend and delete it only if the user is the one who added the poem.
+    This view allows a logged-in superuser to view, update and delete a single poem.
     '''
     if request.user.is_superuser:
         # check if it is a valid request
