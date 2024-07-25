@@ -1,11 +1,9 @@
-from django.shortcuts import render, get_object_or_404
 from django.views import generic
 from .models import Vocabulary
 from .serializers import VocabularySerializer
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework import status
-# from django.contrib.auth.models import User
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required
 
