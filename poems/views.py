@@ -35,7 +35,7 @@ def poem_detail_ui(request, id):
 @api_view(['GET', 'POST'])
 def poems_list_api_view(request):
     '''
-    This view allows a logged-in user to see poems collection.
+    This endpoint allows a logged-in user to see poems collection.
     The superuser can also add a new poem.
     '''
     if request.method == 'GET':
@@ -55,7 +55,7 @@ def poems_list_api_view(request):
 @api_view(['GET', 'PUT', 'DELETE'])
 def poem_detail_api_view(request, id):
     '''
-    This view allows a logged-in superuser to view, update and delete a single poem.
+    This endpoint allows a superuser to view, update and delete a single poem.
     '''
     if request.user.is_superuser:
         # check if it is a valid request
@@ -94,6 +94,10 @@ def poem_detail_api_view(request, id):
 @login_required
 @api_view(['GET', 'POST'])
 def word_list(request):
+    '''
+    This endpoint allows a logged-in user to view the words collection.
+    The superuser can also add a new word.
+    '''
     if request.method == 'GET':
         words = Word.objects.all()
         serializer =  WordSerializer(words, many=True)
@@ -110,7 +114,9 @@ def word_list(request):
 @login_required
 @api_view(['GET', 'PUT', 'DELETE'])
 def word_detail(request, id):
-    
+    '''
+    This endpoint allows a superuser to view, update and delete a single word.
+    '''
     if request.user.is_superuser:
         # check for a valid request
         try: 
