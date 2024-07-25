@@ -43,7 +43,7 @@ def poems_list_api_view(request):
         serializer =  PoemSerializer(poems, many=True)
         return Response({'poems': serializer.data})
 
-    if request.method == 'POST':
+    if request.method == 'POST' and request.user.is_superuser:
         serializer = PoemSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
@@ -99,7 +99,7 @@ def word_list(request):
         serializer =  WordSerializer(words, many=True)
         return Response({'words': serializer.data})
 
-    if request.method == 'POST':
+    if request.method == 'POST' and request.user.is_superuser:
         serializer = WordSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
