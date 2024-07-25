@@ -47,14 +47,11 @@ Find out project board here: [project board](https://github.com/users/kkumyk/pro
 - can save words from the poem specific pages to their vocabulary page
 - can delete words from their vocabulary page
 
-## Database Design
+<!-- ## Database Design
 ### Kabardian Poems Collection ERD
 
 
 <img src="./documentation/poems-erd.png" style="width: 698px; max-width: 100%;">
 
 ## REST API Endpoints
-
-Available to the superusers only:
-
-  '/words/word-id/'
+ -->
